@@ -16,5 +16,5 @@ app.use(bodyParser.json());
 // TODO: api routes
 
 
-app.listen(process.env.PORT || 3000);
+app.listen(3000);
 console.log('Listening at 127.0.0.1:' + 3000);
