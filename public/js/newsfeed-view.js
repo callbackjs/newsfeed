@@ -1,22 +1,16 @@
 // anonymous, self-invoking function to limit scope
 (function() {
-  var NewsfeedView = {};
+  const NewsfeedView = {}
 
-  /* Renders the newsfeed into the given $newsfeed element. */
-  NewsfeedView.render = function($newsfeed) {
+  /* Renders the newsfeed into the given newsfeedElement element. */
+  NewsfeedView.render = newsfeedElement => {
     // TODO
-  };
+  }
 
-  /* Given post information, renders a post element into $newsfeed. */
-  NewsfeedView.renderPost = function($newsfeed, post, updateMasonry) {
+  /* Given post information, renders a post element into newsfeedElement. */
+  NewsfeedView.renderPost = (newsfeedElement, post) => {
     // TODO
+  }
 
-    if (updateMasonry) {
-      $newsfeed.imagesLoaded(function() {
-        $newsfeed.masonry('prepended', $post);
-      });
-    }
-  };
-
-  window.NewsfeedView = NewsfeedView;
-})();
+  window.NewsfeedView = NewsfeedView
+})()

@@ -1,11 +1,11 @@
 // anonymous, self-invoking function to limit scope
 (function() {
-  var MainView = {};
+  const MainView = {}
 
-  MainView.render = function($body) {
-    NewsfeedView.render($body.find('#newsfeed'));
-    SearchView.render($body.find('#search'));
-  };
+  MainView.render = bodyElement => {
+    NewsfeedView.render(bodyElement.querySelector('#newsfeed'))
+    SearchView.render(bodyElement.querySelector('#search'))
+  }
 
-  window.MainView = MainView;
-})();
+  window.MainView = MainView
+})()

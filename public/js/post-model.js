@@ -1,8 +1,8 @@
 // anonymous, self-invoking function to limit scope
 (function() {
-  var PostModel = {};
+  const PostModel = {}
 
-  var POSTS_URL= '/posts';
+  const POSTS_URL= '/posts'
 
   /**
    * Loads all newsfeed posts from the server.
@@ -11,9 +11,9 @@
    *  error -- the error that occurred or null if no error occurred
    *  results -- an array of newsfeed posts
    */
-  PostModel.loadAll = function(callback) {
+  PostModel.loadAll = callback => {
     // TODO
-  };
+  }
 
   /* Adds the given post to the list of posts. The post must *not* have
    * an _id associated with it.
@@ -22,18 +22,18 @@
    *  error -- the error that occurred or null if no error occurred
    *  post -- the post added, with an _id attribute
    */
-  PostModel.add = function(post, callback) {
+  PostModel.add = (post, callback) => {
     // TODO
-  };
+  }
 
   /* Removes the post with the given id.
    *
    * Calls: callback(error)
    *  error -- the error that occurred or null if no error occurred
    */
-  PostModel.remove = function(id, callback) {
+  PostModel.remove = (id, callback) => {
     // TODO
-  };
+  }
 
   /* Upvotes the post with the given id.
    *
@@ -41,9 +41,9 @@
    *  error -- the error that occurred or null if no error occurred
    *  post -- the updated post model
    */
-  PostModel.upvote = function(id, callback) {
+  PostModel.upvote = (id, callback) => {
     // TODO
-  };
+  }
 
-  window.PostModel = PostModel;
-})();
+  window.PostModel = PostModel
+})()

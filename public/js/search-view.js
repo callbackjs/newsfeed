@@ -1,51 +1,53 @@
 // anonymous, self-invoking function to limit scope
 (function() {
-  var SearchView = {};
+  const SearchView = {}
 
   /* Renders the search, allowing the client to query and see results. */
-  SearchView.render = function($search) {
-    $search.submit(function(event) {
-      event.preventDefault();
-      var $searchInput = $search.find('input[name="query"]');
-      searchAndRenderResults($search, $searchInput.val());
-    });
-  };
+  SearchView.render = searchElement => {
+    searchElement.addEventListener('submit', event => {
+      event.preventDefault()
+      const searchInputElement = searchElement.querySelector('input[name="query"]')
+      searchAndRenderResults(searchElement, searchInputElement.value)
+    })
+  }
 
   /* Searches the services with the provided query and renders the results. */
-  function searchAndRenderResults($search, query) {
-    var $searchResults = $search.find('#search-results');
-    $search.addClass('loading');
-
-    SearchModel.search(query, function(error, results) {
+  function searchAndRenderResults(searchElement, query) {
+    searchElement.classList.add('loading')
+    SearchModel.search(query, (error, results) => {
       if (error) {
-        $('.error').text('Failed to load search results.');
+        document.querySelector('.error').textContent = 'Failed to load search results.'
       } else {
-        $searchResults.html(Templates.renderSearchResults(results));
-        $searchResults.find('.result').each(function(index, result) {
-          $(result).click(function() {
-            selectSearchResult($search, results[index]);
-          });
-        });
+        const searchContainerElement = searchElement.querySelector('#search-results')
+        searchContainerElement.innerHTML = ''
+        searchContainerElement.appendChild(Templates.renderSearchResults(results))
 
-        $search.removeClass('loading');
-        $searchResults.show();
+        const searchResultsElements = Array.from(searchContainerElement.querySelectorAll('.result'))
+        searchResultsElements.forEach((resultElement, index) => {
+          resultElement.addEventListener('click', () => {
+            selectSearchResult(searchElement, results[index])
+          })
+        })
+
+        searchElement.classList.remove('loading')
+        searchContainerElement.classList.remove('hide')
       }
-    });
+    })
   }
 
   /* Creates a new post in the newsfeed based on the selected search result. */
-  function selectSearchResult($search, result) {
-    $search.find('#search-results').hide();
-    $search.find('input[name="query"]').val('');
+  function selectSearchResult(searchElement, result) {
+    searchElement.querySelector('#search-results').classList.add('hide')
+    searchElement.querySelector('input[name="query"]').value = ''
 
-    PostModel.add(result, function(error, post) {
+    PostModel.add(result, (error, post) => {
       if (error) {
-        $('.error').text('Failed to add the post.');
+        document.querySelector('.error').textContent = 'Failed to add the post.'
       } else {
-        NewsfeedView.renderPost($('#newsfeed'), post, true);
+        NewsfeedView.renderPost(document.querySelector('#newsfeed'), post)
       }
-    });
+    })
   }
 
-  window.SearchView = SearchView;
-})();
+  window.SearchView = SearchView
+})()

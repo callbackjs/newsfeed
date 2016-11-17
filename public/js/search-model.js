@@ -1,8 +1,9 @@
 // anonymous, self-invoking function to limit scope
 (function() {
-  var SearchModel = {};
+  const SearchModel = {}
 
-  var SEARCH_URL = '/search';
+  const SEARCH_URL = '/search'
+  const STATUS_OK = 200
 
   /**
    * Loads API search results for a given query.
@@ -11,9 +12,9 @@
    *  error -- the error that occurred or NULL if no error occurred
    *  results -- an array of search results
    */
-  SearchModel.search = function(query, callback) {
+  SearchModel.search = (query, callback) => {
     // TODO
-  };
+  }
 
-  window.SearchModel = SearchModel;
-})();
+  window.SearchModel = SearchModel
+})()

@@ -51,6 +51,10 @@ header h1 i.fa {
   margin: 5px 0;
 }
 
+.hide {
+  display: none;
+}
+
 #search span {
   margin: 0;
   line-height: 32px;
